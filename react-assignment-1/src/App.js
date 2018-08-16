@@ -5,7 +5,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div class = "nav"></div>
+      <div class = "nav"><h3>First React Assignment </h3></div>
     );
   }
 }
