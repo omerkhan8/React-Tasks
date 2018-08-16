@@ -908,6 +908,7 @@ class App extends Component {
                               <li>
                                 <b>Title:</b> {content.title} <br />
                                 <b>Body:</b> {content.body} <br />
+                                <br />
 
                               </li>
                             )
