@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo1 from './images/logo1.png';
 
 class App extends Component {
 
   renderHeader() {
     return (
-      <div>
-        <div className='nav'>Todo App</div>
-      </div>
+        <div className='nav'>
+          <img src={logo1} alt="logo" className='logo1' />
+          Todo App
+        </div>
     )
   }
 
@@ -18,7 +19,7 @@ class App extends Component {
       <div>
         {this.renderHeader()}
       </div>
-      
+
     );
   }
 }
