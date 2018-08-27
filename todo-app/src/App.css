@@ -13,3 +13,21 @@
   width: 60px;
   height: 60px;
 }
+
+.input{
+  /* border-style: solid; */
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.input input{
+  height: 40px;
+  width: 50%;
+}
+
+
+@media (max-width:600px){
+  .input input{
+    width: 80%;
+  }
+}

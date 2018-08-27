@@ -13,11 +13,20 @@ class App extends Component {
     )
   }
 
+  renderBody(){
+    return(
+      <div className = 'input'>
+        <input type="text"/>
+      </div>
+    )
+  }
 
   render() {
     return (
       <div>
         {this.renderHeader()}
+        {this.renderBody()}
+        
       </div>
 
     );
