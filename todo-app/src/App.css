@@ -1,4 +1,4 @@
-.nav{
+.navBarr{
   height: 80px;
   text-align: center;
   line-height: 80px;
@@ -23,6 +23,12 @@
 .input input{
   height: 40px;
   width: 50%;
+}
+
+.icon11{
+  position: relative;
+  top: 9px;
+  left: 5px;
 }
 
 
