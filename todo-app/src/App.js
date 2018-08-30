@@ -25,19 +25,27 @@ class App extends Component {
   addTodo() {
     let { todoList, text } = this.state;
     if (text !== "") {
+      todoList.push(text);
       text = "";
       this.setState({ todoList, text, error: false });
-      console.log(this.state)
     }
     else {
       this.setState({ error: true })
-
-
-
-
     }
   }
 
+  showlist() {
+    const { todoList } = this.state;
+    return (
+      <ul className="list-group">
+        {
+          todoList.map(items => {
+            return <li className="list-group-item" key={Math.random().toString().slice(2, 6)}>{items}</li>
+          })
+        }
+      </ul>
+    )
+  }
 
 
   renderHeader() {
@@ -58,10 +66,12 @@ class App extends Component {
           <span className="icon11">
             <i className="fa fa-plus-square" style={{ fontSize: '40px', color: '#5BB06C', }} onClick={() => this.addTodo()}></i>
           </span>
-          { error && <p style={{ color: 'red' }}>please enter something to add.</p> }
+          {error && <p style={{ color: 'red' }}>please enter something to add.</p>}
         </div>
         <div className='myList'>
-
+          {
+            this.showlist()
+          }
         </div>
       </div>
     )
