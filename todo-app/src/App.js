@@ -37,10 +37,14 @@ class App extends Component {
   showlist() {
     const { todoList } = this.state;
     return (
-      <ul className="list-group">
+      <ul>
         {
           todoList.map(items => {
-            return <li className="list-group-item" key={Math.random().toString().slice(2, 6)}>{items}</li>
+            return <li className='listStyle'>
+            {items}
+            <i className="fa fa-undo" id="updateIcon"  ></i>
+            </li>     
+            
           })
         }
       </ul>
