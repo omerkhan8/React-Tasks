@@ -8,7 +8,8 @@ class App extends Component {
     super();
     this.state = {
       todoList: [],
-      text: ''
+      text: '',
+      error: false
     }
 
     this.getText = this.getText.bind(this);
@@ -23,10 +24,18 @@ class App extends Component {
 
   addTodo() {
     let { todoList, text } = this.state;
-    todoList.push(text);
-    text = '';
-    this.setState({ todoList, text });
-    console.log(this.state)
+    if (text !== "") {
+      text = "";
+      this.setState({ todoList, text, error: false });
+      console.log(this.state)
+    }
+    else {
+      this.setState({ error: true })
+
+
+
+
+    }
   }
 
 
@@ -41,13 +50,15 @@ class App extends Component {
   }
 
   renderBody() {
+    const { error } = this.state;
     return (
       <div>
         <div className='input'>
-          <input type="text" onChange={this.getText} />
+          <input type="text" onChange={this.getText} value={this.state.text} />
           <span className="icon11">
             <i className="fa fa-plus-square" style={{ fontSize: '40px', color: '#5BB06C', }} onClick={() => this.addTodo()}></i>
           </span>
+          { error && <p style={{ color: 'red' }}>please enter something to add.</p> }
         </div>
         <div className='myList'>
 
