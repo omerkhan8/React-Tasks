@@ -33,13 +33,8 @@
 
 .myList{
   /* border-style: solid; */
-  width: 100%;
+  width: 50%;
   margin: 0 auto;
-}
-
-.listStyle{
-  font-size:'1.3em';
-margin-left:'22%'
 }
 
 @media (max-width:600px){
