@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       todoList: [],
       text: '',
-      error: false
+      error: false,
+      index: null
     }
 
     this.getText = this.getText.bind(this);
@@ -23,28 +24,38 @@ class App extends Component {
   }
 
   addTodo() {
-    let { todoList, text } = this.state;
+    let { todoList, text, index } = this.state;
     if (text !== "") {
-      todoList.push(text);
+      index === null ? todoList.push(text) : todoList[index] = text;
       text = "";
-      this.setState({ todoList, text, error: false });
+      this.setState({ todoList, text, error: false, index: null });
     }
     else {
       this.setState({ error: true })
     }
   }
 
+  updateTodo(index, e) {
+    let { todoList } = this.state;
+
+    this.setState({ index, text: todoList[index] })
+    // const list = e.currentTarget.parentNode;
+
+  }
+
+
   showlist() {
-    const { todoList } = this.state;
+    const { todoList, listColor } = this.state;
     return (
       <ul>
         {
-          todoList.map(items => {
-            return <li className='listStyle'>
-            {items}
-            <i className="fa fa-undo" id="updateIcon"  ></i>
-            </li>     
-            
+          todoList.map((items, index) => {
+            return <li key={Math.random().toString().substring(2, 6)} style={{ fontSize: '1.3em' }}>
+              {items}
+              <i className="fa fa-undo" style={{ color: '#5BB06C', margin: '10px' }} onClick={(e) => this.updateTodo(index, e)}></i>
+              <i className="fa fa-trash" style={{ color: 'red' }} id="check"></i>
+            </li>
+
           })
         }
       </ul>
