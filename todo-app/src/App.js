@@ -37,28 +37,35 @@ class App extends Component {
 
   updateTodo(index, e) {
     let { todoList } = this.state;
-
-    this.setState({ index, text: todoList[index] })
-    // const list = e.currentTarget.parentNode;
-
+    this.setState({ index, text: todoList[index] });
   }
 
 
   showlist() {
-    const { todoList, listColor } = this.state;
+    const { todoList, index } = this.state;
     return (
       <ul>
         {
-          todoList.map((items, index) => {
-            return <li key={Math.random().toString().substring(2, 6)} style={{ fontSize: '1.3em' }}>
-              {items}
-              <i className="fa fa-undo" style={{ color: '#5BB06C', margin: '10px' }} onClick={(e) => this.updateTodo(index, e)}></i>
-              <i className="fa fa-trash" style={{ color: 'red' }} id="check"></i>
-            </li>
+          todoList.map((items, indx) => {
+            return (
+              indx === index ?
+                < li key={Math.random().toString().substring(2, 6)} style={{ fontSize: '1.3em', color: 'red' }}>
+                  {items}
+                  < i className="fa fa-undo" style={{ color: '#5BB06C', margin: '10px' }} onClick={(e) => this.updateTodo(indx, e)}></i>
+                  <i className="fa fa-trash" style={{ color: 'red' }} id="check"></i>
+                </li >
+                :
+                < li key={Math.random().toString().substring(2, 6)} style={{ fontSize: '1.3em' }}>
+                  {items}
+                  < i className="fa fa-undo" style={{ color: '#5BB06C', margin: '10px' }} onClick={(e) => this.updateTodo(indx, e)}></i>
+                  <i className="fa fa-trash" style={{ color: 'red' }} id="check"></i>
+                </li >
+
+            )
 
           })
         }
-      </ul>
+      </ul >
     )
   }
 
