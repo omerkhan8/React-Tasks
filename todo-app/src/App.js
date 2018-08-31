@@ -40,6 +40,12 @@ class App extends Component {
     this.setState({ index, text: todoList[index] });
   }
 
+  deleteList(indx) {
+    const { todoList } = this.state;
+    todoList.splice(indx,1);
+    this.setState({todoList});
+  }
+
 
   showlist() {
     const { todoList, index } = this.state;
@@ -58,7 +64,7 @@ class App extends Component {
                 < li key={Math.random().toString().substring(2, 6)} style={{ fontSize: '1.3em' }}>
                   {items}
                   < i className="fa fa-undo" style={{ color: '#5BB06C', margin: '10px' }} onClick={(e) => this.updateTodo(indx, e)}></i>
-                  <i className="fa fa-trash" style={{ color: 'red' }} id="check"></i>
+                  <i className="fa fa-trash" style={{ color: 'red' }} onClick={() => this.deleteList(indx)}></i>
                 </li >
 
             )
