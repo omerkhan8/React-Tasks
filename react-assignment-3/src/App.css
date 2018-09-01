@@ -1,0 +1,23 @@
+.loginDiv{
+    border-style: solid;
+    width: 32%;
+    margin: 10% auto;
+    border-color: lightgray;
+    border-width: 1.3px;
+    box-shadow: 1px 1px 8px 0.5px #777777;
+    padding: 10px;
+    border-radius: 30px;
+    
+}
+
+.adminHeading{
+    font-family: cursive;
+    text-align: center;
+}
+
+#line{
+    border-top: solid;
+    margin-bottom: 15px;
+    border-width: 1.3px;
+    border-color: rgb(201, 199, 199);
+}
