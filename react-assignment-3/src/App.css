@@ -1,6 +1,6 @@
-body{
+/* body{
     background-image: url('./images/background.jpg');
-}
+} */
 
 .loginDiv{
     border-style: solid;
@@ -11,7 +11,7 @@ body{
     box-shadow: 1px 1px 8px 0.5px #777777;
     padding: 10px;
     border-radius: 30px;
-    background-color: rgba(0,0,0,20%);
+    background-color: rgba(0,0,0,30%);
     
     
 }
@@ -39,6 +39,16 @@ input{
     border-width: 1.3px;
     /* border-color: rgb(201, 199, 199); */
     border-color: white;
+}
+
+.loginBtn{
+    text-align: center;
+}
+
+.loginBtn button{
+    border-radius: 30px !important;
+    width: 30%;
+    margin: 0 auto;
 }
 
 ::placeholder{
