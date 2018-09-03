@@ -17,6 +17,11 @@ class App extends Component {
 
     this.loginUser = this.loginUser.bind(this);
     this.adToForm = this.adToForm.bind(this);
+    this.cancel = this.cancel.bind(this);
+  }
+
+  cancel() {
+    this.setState({ adForm: false })
   }
 
   loginUser() {
@@ -34,7 +39,7 @@ class App extends Component {
       <div>
         {!user && <Login loginUser={this.loginUser} />}
         {user && !adForm && <Table adToForm={this.adToForm} />}
-        {user && adForm && <Form />}
+        {user && adForm && <Form cancel ={this.cancel} />}
       </div>
     );
   }

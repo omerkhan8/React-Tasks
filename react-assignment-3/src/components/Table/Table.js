@@ -14,8 +14,8 @@ class Table extends Component {
 
     floatingBtn() {
         return (
-            <div className="floatingBtn">
-                <i className="fa fa-plus" style={{ color: 'white' }} onClick={() => this.addEmp()}></i>
+            <div className="floatingBtn" onClick={() => this.addEmp()}>
+                <i className="fa fa-plus" style={{ color: 'white' }} ></i>
             </div>
         )
     }
