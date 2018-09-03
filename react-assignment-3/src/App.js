@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: false
+      user: true
     }
 
     this.loginUser = this.loginUser.bind(this);
@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <div>
         {!user && <Login loginUser={this.loginUser} />}
-        {user && <Table />}
+        {user && <Table /> }
       </div>
     );
   }
