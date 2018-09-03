@@ -3,10 +3,19 @@ import './Table.css';
 
 class Table extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {}
+    }
+
+    addEmp() {
+        this.props.adToForm();
+    }
+
     floatingBtn() {
         return (
             <div className="floatingBtn">
-                <i class="fa fa-plus" style={{color:'white'}}></i>
+                <i className="fa fa-plus" style={{ color: 'white' }} onClick={() => this.addEmp()}></i>
             </div>
         )
     }
@@ -33,18 +42,7 @@ class Table extends Component {
                         <td>@mdo</td>
                         <td>haha</td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td >Larry the Bird</td>
-                        <td>what</td>
-                        <td>@twitter</td>
-                    </tr>
+
                 </tbody>
             </table>
 
@@ -61,4 +59,4 @@ class Table extends Component {
     }
 }
 
-export default Table;
+export default Table; 

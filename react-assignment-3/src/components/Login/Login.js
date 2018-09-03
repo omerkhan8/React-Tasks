@@ -29,7 +29,11 @@ class Login extends Component {
   login() {
     const { email, password } = this.state;
     if (email === 'admin@domain.com' && password === 'admin') {
-      this.props.loginUser();
+      swal({ title: 'Succesful', icon: 'success' });
+      setTimeout(() => {
+        swal.close();
+        this.props.loginUser();
+      }, 2000);
     }
     else {
       swal({
@@ -48,11 +52,11 @@ class Login extends Component {
           <h2 className='adminHeading'>Admin Login</h2>
           <div id='line'></div>
           <div className="form-group">
-            <input type="email" className="form-control" placeholder="Enter email" onChange={(e) => this.getEmail(e)} />
+            <input type="email" className="form-control inputLogin" placeholder="Enter email" onChange={(e) => this.getEmail(e)} />
             <small id="emailHelp" className="form-text" style={{ color: 'white' }}>Email associated with admin account.</small>
           </div>
           <div className="form-group">
-            <input type="password" className="form-control" placeholder="Password" onChange={(e) => this.getPassword(e)} />
+            <input type="password" className="form-control inputLogin" placeholder="Password" onChange={(e) => this.getPassword(e)} />
           </div>
           <div className='loginBtn'>
             <button type="submit" className="btn btn-dark" onClick={this.login}>Login</button>
