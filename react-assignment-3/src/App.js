@@ -10,14 +10,24 @@ class App extends Component {
 
   constructor() {
     super();
+
     this.state = {
       user: false,
-      adForm: false
+      adForm: false,
+      userData: []
+
     }
 
     this.loginUser = this.loginUser.bind(this);
     this.adToForm = this.adToForm.bind(this);
     this.cancel = this.cancel.bind(this);
+    this.submit = this.submit.bind(this);
+  }
+
+  submit(obj) {
+    const { userData } = this.state;
+    userData.push(obj);
+    this.setState({ userData });
   }
 
   cancel() {
@@ -38,8 +48,8 @@ class App extends Component {
     return (
       <div>
         {!user && <Login loginUser={this.loginUser} />}
-        {user && !adForm && <Table adToForm={this.adToForm} />}
-        {user && adForm && <Form cancel ={this.cancel} />}
+        {user && !adForm && <Table adToForm={this.adToForm} userData={this.state.userData} />}
+        {user && adForm && <Form cancel={this.cancel} submit={this.submit} />}
       </div>
     );
   }
