@@ -5,7 +5,9 @@ class Table extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            data: this.props.userData
+        }
     }
 
     addEmp() {
@@ -21,6 +23,17 @@ class Table extends Component {
     }
 
     showTable() {
+        const { data } = this.state;
+        const iconStyle = {
+            color: '#4285F4',
+            fontSize: '30px',
+            cursor: 'pointer'
+        }
+        const iconStyle2 = {
+            color: 'red',
+            fontSize: '30px',
+            cursor: 'pointer'
+        }
         return (
             <table className="table table-hover ">
                 <thead className="thead-dark">
@@ -35,13 +48,23 @@ class Table extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>haha</td>
-                    </tr>
+                    {data.map((val, indx) => {
+                        return (
+                            <tr key={Math.random().toString().substr(2, 6)}>
+                                <th scope="row">{indx + 1}</th>
+                                <td>{val.firstName}</td>
+                                <td>{val.lastName}</td>
+                                <td>{val.email}</td>
+                                <td>{val.salary}</td>
+                                <td>{val.date}</td>
+                                <td>
+                                    <i className="fa fa-edit" style={iconStyle}></i> &nbsp; &nbsp;
+                                    <i className="fa fa-trash" style={iconStyle2}></i>
+                                </td>
+                            </tr>
+                        )
+                    })}
+
 
                 </tbody>
             </table>
