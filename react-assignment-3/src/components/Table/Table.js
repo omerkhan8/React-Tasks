@@ -7,7 +7,16 @@ class Table extends Component {
         super(props)
         this.state = {
             data: this.props.userData
+  
         }
+    }
+
+    edit(index) {
+        
+        this.props.edit(index);
+        this.props.adToForm();
+
+
     }
 
     addEmp() {
@@ -58,7 +67,7 @@ class Table extends Component {
                                 <td>{val.salary}</td>
                                 <td>{val.date}</td>
                                 <td>
-                                    <i className="fa fa-edit" style={iconStyle}></i> &nbsp; &nbsp;
+                                    <i className="fa fa-edit" style={iconStyle} onClick={() => this.edit(indx)}></i> &nbsp; &nbsp;
                                     <i className="fa fa-trash" style={iconStyle2}></i>
                                 </td>
                             </tr>
