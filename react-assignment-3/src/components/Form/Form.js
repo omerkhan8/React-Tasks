@@ -12,10 +12,10 @@ class Form extends Component {
             lastName: '',
             email: '',
             salary: '',
-            date: ''
+            date: '',
+
 
         }
-
 
     }
 
@@ -36,14 +36,14 @@ class Form extends Component {
     }
 
     showForm() {
-
         return (
             <div>
                 <div className="heading">
                     <h2>Add Employee</h2>
                 </div>
+
                 <div className='formDiv'>
-                    <input type="text" className='inputTag' placeholder='First Name' onChange={(e) => this.setState({ firstName: e.target.value })} />
+                    <input type="text" className='inputTag' value={this.state.firstName} placeholder='First Name' onChange={(e) => this.setState({ firstName: e.target.value })} />
                     <input type="text" className='inputTag' placeholder='Last Name' onChange={(e) => this.setState({ lastName: e.target.value })} />
                     <input type="text" className='inputTag' placeholder='Email' onChange={(e) => this.setState({ email: e.target.value })} />
                     <input type="text" className='inputTag' placeholder='Salary' onChange={(e) => this.setState({ salary: e.target.value })} />
