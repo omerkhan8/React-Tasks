@@ -14,7 +14,9 @@ class App extends Component {
     this.state = {
       user: false,
       adForm: false,
-      userData: []
+      userData: [],
+      index: null,
+      userObj: null
 
     }
 
@@ -22,11 +24,24 @@ class App extends Component {
     this.adToForm = this.adToForm.bind(this);
     this.cancel = this.cancel.bind(this);
     this.submit = this.submit.bind(this);
+    this.edit = this.edit.bind(this);
+  }
+
+  edit(index) {
+    const { userData } = this.state;
+    let obj = {
+      firstName: userData[index].firstName,
+      lastName: userData[index].lastName,
+      email: userData[index].email,
+      salary: userData[index].salary,
+      date: userData[index].date
+    };
+    this.setState({ index, userObj: obj });
   }
 
   submit(obj) {
-    const { userData } = this.state;
-    userData.push(obj);
+    const { userData, index } = this.state;
+    index === null ? userData.push(obj) : userData[index] = obj;
     this.setState({ userData });
   }
 
@@ -48,8 +63,8 @@ class App extends Component {
     return (
       <div>
         {!user && <Login loginUser={this.loginUser} />}
-        {user && !adForm && <Table adToForm={this.adToForm} userData={this.state.userData} />}
-        {user && adForm && <Form cancel={this.cancel} submit={this.submit} />}
+        {user && !adForm && <Table adToForm={this.adToForm} userData={this.state.userData} edit={this.edit} />}
+        {user && adForm && <Form cancel={this.cancel} submit={this.submit} index={this.state.index} userObj ={this.state.userObj} />}
       </div>
     );
   }
