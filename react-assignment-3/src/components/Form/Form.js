@@ -8,11 +8,11 @@ class Form extends Component {
         super(props);
         this.state = {
 
-            firstName: '',
-            lastName: '',
-            email: '',
-            salary: '',
-            date: '',
+            firstName: this.props.editObj.firstName,
+            lastName: this.props.editObj.lastName,
+            email: this.props.editObj.email,
+            salary: this.props.editObj.salary,
+            date: this.props.editObj.date,
 
 
         }
@@ -31,6 +31,7 @@ class Form extends Component {
         }
     }
 
+
     cancel() {
         this.props.cancel();
     }
@@ -44,10 +45,10 @@ class Form extends Component {
 
                 <div className='formDiv'>
                     <input type="text" className='inputTag' value={this.state.firstName} placeholder='First Name' onChange={(e) => this.setState({ firstName: e.target.value })} />
-                    <input type="text" className='inputTag' placeholder='Last Name' onChange={(e) => this.setState({ lastName: e.target.value })} />
-                    <input type="text" className='inputTag' placeholder='Email' onChange={(e) => this.setState({ email: e.target.value })} />
-                    <input type="text" className='inputTag' placeholder='Salary' onChange={(e) => this.setState({ salary: e.target.value })} />
-                    <input type="date" className='inputTag' onChange={(e) => this.setState({ date: e.target.value })} />
+                    <input type="text" className='inputTag' value={this.state.lastName} placeholder='Last Name' onChange={(e) => this.setState({ lastName: e.target.value })} />
+                    <input type="text" className='inputTag' value={this.state.email} placeholder='Email' onChange={(e) => this.setState({ email: e.target.value })} />
+                    <input type="text" className='inputTag' value={this.state.salary} placeholder='Salary' onChange={(e) => this.setState({ salary: e.target.value })} />
+                    <input type="date" className='inputTag' value={this.state.date} onChange={(e) => this.setState({ date: e.target.value })} />
                     <button type="submit" className="btn btn-primary " onClick={() => this.submit()}>Confirm</button> &nbsp;
                     <button type="button" className="btn btn-secondary" onClick={() => this.cancel()}>Cancel</button>
                 </div>
