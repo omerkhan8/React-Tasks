@@ -15,8 +15,10 @@ class Table extends Component {
         
         this.props.edit(index);
         this.props.adToForm();
+    }
 
-
+    delete(index){
+        this.props.delete(index);
     }
 
     addEmp() {
@@ -68,7 +70,7 @@ class Table extends Component {
                                 <td>{val.date}</td>
                                 <td>
                                     <i className="fa fa-edit" style={iconStyle} onClick={() => this.edit(indx)}></i> &nbsp; &nbsp;
-                                    <i className="fa fa-trash" style={iconStyle2}></i>
+                                    <i className="fa fa-trash" style={iconStyle2} onClick={()=>this.delete(indx)}></i>
                                 </td>
                             </tr>
                         )
