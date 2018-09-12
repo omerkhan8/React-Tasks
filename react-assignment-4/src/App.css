@@ -1,0 +1,48 @@
+.BulbDiv{
+  width: 70%;
+  height: 70%;
+  margin: 0 auto;
+  padding:20px;
+  text-align: center;
+}
+
+.btnDiv{
+  margin: 10px;
+  text-align: center;
+}
+
+.btnCss{
+  width: 90px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  font-family: cursive;
+  font-size: 0.9em;
+  border-radius: 20px;
+}
+
+.bulbCss{
+  width: 400px;
+  height: 500px;
+}
+
+.green{
+  background-color: #34A853;
+}
+.green:hover{
+  background-color: rgb(46, 146, 73);
+}
+
+.red{
+  background-color: #EA4335;
+}
+.red:hover{
+  background-color: rgb(190, 61, 49);
+}
+
+.orange{
+  background-color: #FBBC05;
+}
+.orange:hover{
+  background-color: rgb(224, 170, 6);
+}
