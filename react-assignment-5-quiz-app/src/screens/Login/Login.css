@@ -1,14 +1,16 @@
+body{
+    background-color: #ece9e9;
+}
 .loginDiv{
     /* border-style: solid; */
     width: 420px;
-    height: 280px;
     margin: 10% auto;
     /* border-color: grey; */
     border-width: 1.3px;
     box-shadow: 1px 1px 8px 0.5px #777777;
     padding: 10px;
     border-radius: 30px;
-    /* background-color: rgba(0,0,0,30%); */
+    background-color: white;
     
     
 }
@@ -47,6 +49,12 @@
     background-color: rgb(18, 143, 134);
 }
 
+ 
+#signupText{
+ margin-top: 15px;  
+ font-size: 1em;
+}
+
 @media(max-width:450px){
     .loginDiv{
         width: 280px;
@@ -59,5 +67,3 @@
         width: 70%;
     }
 }
-    
-    
