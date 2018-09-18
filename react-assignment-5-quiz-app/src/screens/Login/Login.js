@@ -36,8 +36,15 @@ class Login extends Component {
 
     loginUser() {
         const { email, password } = this.state;
-        
+        const userData = JSON.parse(localStorage.getItem('userData'));
 
+        if (email === userData.email && password === userData.password) {
+            this.props.loginUser(true);
+        }
+        else {
+            alert('invalid email / password entered')
+            this.setState({ email: '', password: '' });
+        }
     }
 
 
