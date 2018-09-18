@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Login from './screens/Login/Login';
+import Quizlist from './screens/Quizlist/Quizlist';
 
 class App extends Component {
   constructor() {
@@ -8,17 +9,31 @@ class App extends Component {
     this.state = {
       userLogin: false
     }
+
+    this.loginUser = this.loginUser.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
-  loginUser(){
-    
+  componentWillMount() {
+    let userLogin = JSON.parse(localStorage.getItem('userLogin'));
+    this.setState({ userLogin });
+  }
+
+  loginUser(userLogin) {
+    this.setState({ userLogin });
+    localStorage.setItem('userLogin', true);
+  }
+
+  logout() {
+    this.setState({ userLogin: false });
+    localStorage.setItem('userLogin', false);
   }
 
   render() {
-    const { userLogin } = this.state;
+    let { userLogin } = this.state;
     return (
       <div>
-        {!userLogin && <Login />} 
+        {!userLogin ? <Login loginUser={this.loginUser} /> : <Quizlist logout={this.logout} />}
       </div>
     );
   }
