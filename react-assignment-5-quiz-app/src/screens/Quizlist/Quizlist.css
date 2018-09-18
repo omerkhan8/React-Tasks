@@ -1,0 +1,21 @@
+.logoutBtn{
+    /* border-style: solid; */
+    position: fixed;
+    right: 20px;
+}
+.logoutBtn button{
+    margin-top: 11px;
+    width: 120px;
+    background-color: #333333;
+    color: white;
+    font-family: cursive;
+    border-radius: 5px;
+}
+.logoutBtn button:hover{
+    background-color: darkgray;
+    color: black;
+}
+
+.quizDiv{
+    
+}
