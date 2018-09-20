@@ -68,6 +68,7 @@
     /* background-color: dodgerblue; */
     background-color: #13A89E;
     color: white;
+    padding-top: 50px;
     transform: rotateY(180deg);
   }
 
@@ -77,6 +78,10 @@
       padding: 20px;
   }
 
+  #takeQuizBtn:hover{
+    background-color: rgb(202, 199, 199);
+  }
+  
   @media(max-width:380px){
       .flip-card{
           width: 230px;

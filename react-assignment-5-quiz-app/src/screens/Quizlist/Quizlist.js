@@ -5,6 +5,7 @@ import HtmlLogo from '../../logo/html.png';
 import AngularLogo from '../../logo/angular.png';
 import ReactLogo from '../../logo/react.png';
 import JsLogo from '../../logo/js.png';
+import QuizDetails from '../../components/QuizDetails';
 
 class Quizlist extends Component {
     constructor() {
@@ -226,32 +227,47 @@ class Quizlist extends Component {
                         ]
                     }
                 }
-            ]
+            ],
+            show: null
         }
+        this.back = this.back.bind(this);
     }
 
+    componentWillMount() {
+        let showPage = JSON.parse(localStorage.getItem('showQuizList'));
+        this.setState({ show: showPage });
+    }
 
     logout() {
         this.props.logout();
     }
 
+    takeQuiz(index) {
+        this.setState({ show: index });
+        localStorage.setItem('showQuizList', index);
+    }
+
+    back() {
+        this.setState({ show: null });
+        localStorage.setItem('showQuizList', null);
+    }
 
 
     renderQuizes() {
         const { quizList } = this.state;
         return (
             <div className='quizDiv' >
-                {quizList.map((items) => {
+                {quizList.map((items, indx) => {
                     return (
-                        <div className="flip-card">
+                        <div className="flip-card" key={items.mainTitle}>
                             <div className="flip-card-inner">
                                 <div className="flip-card-front">
                                     <img src={items.mainLogo} alt="logo" id='cardLogo' />
                                 </div>
-                                <div class="flip-card-back">
-                                    <h1>John Doe</h1>
-                                    <p>Architect & Engineer</p>
-                                    <p>We love that guy</p>
+                                <div className="flip-card-back">
+                                    <h1>{items.mainTitle}</h1>
+                                    <p>This Covers all quizes related to {items.mainTitle}</p>
+                                    <button type="submit" className="btn" id='takeQuizBtn' onClick={() => this.takeQuiz(indx)} >Take Quiz</button>
                                 </div>
                             </div>
                         </div>
@@ -262,6 +278,7 @@ class Quizlist extends Component {
         )
     }
     render() {
+        const { quizList, show } = this.state;
         return (
             <div>
                 <Nav>
@@ -269,7 +286,10 @@ class Quizlist extends Component {
                         <button type="submit" className="btn" onClick={() => this.logout()} >Logout</button>
                     </div>
                 </Nav>
-                {this.renderQuizes()}
+                {show === null ?
+                    this.renderQuizes() :
+                    <QuizDetails quizList={quizList} show={show} back={this.back} />}
+
             </div>
         )
     }
