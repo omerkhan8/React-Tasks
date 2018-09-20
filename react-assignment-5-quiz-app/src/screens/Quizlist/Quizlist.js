@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './Quizlist.css';
 import Nav from '../../components/Navbar';
+import HtmlLogo from '../../logo/html.png';
+import AngularLogo from '../../logo/angular.png';
+import ReactLogo from '../../logo/react.png';
+import JsLogo from '../../logo/js.png';
 
 class Quizlist extends Component {
     constructor() {
@@ -9,6 +13,7 @@ class Quizlist extends Component {
             quizList: [
                 {
                     mainTitle: 'Angular',
+                    mainLogo: AngularLogo,
                     quizOne: {
                         title: 'Angular quiz1',
                         questions: [new Questions('Angular question1', 'one', 'two', 'three', 'four', 'three'),
@@ -64,6 +69,7 @@ class Quizlist extends Component {
                 },
                 {
                     mainTitle: 'React',
+                    mainLogo: ReactLogo,
                     quizOne: {
                         title: 'React quiz1',
                         questions: [new Questions('React question1', 'one', 'two', 'three', 'four', 'three'),
@@ -116,6 +122,7 @@ class Quizlist extends Component {
                 },
                 {
                     mainTitle: 'Html',
+                    mainLogo: HtmlLogo,
                     quizOne: {
                         title: 'Html quiz1',
                         questions: [new Questions('Html question1', 'one', 'two', 'three', 'four', 'three'),
@@ -168,6 +175,7 @@ class Quizlist extends Component {
                 },
                 {
                     mainTitle: 'JavaScript',
+                    mainLogo: JsLogo,
                     quizOne: {
                         title: 'Javascript quiz1',
                         questions: [new Questions('Javascript question1', 'one', 'two', 'three', 'four', 'three'),
@@ -233,11 +241,23 @@ class Quizlist extends Component {
         const { quizList } = this.state;
         return (
             <div className='quizDiv' >
-                <ul>
-                    {quizList.map(items => {
-                        return <li key={items.mainTitle}>{items.mainTitle}</li>
-                    })}
-                </ul>
+                {quizList.map((items) => {
+                    return (
+                        <div className="flip-card">
+                            <div className="flip-card-inner">
+                                <div className="flip-card-front">
+                                    <img src={items.mainLogo} alt="logo" id='cardLogo' />
+                                </div>
+                                <div class="flip-card-back">
+                                    <h1>John Doe</h1>
+                                    <p>Architect & Engineer</p>
+                                    <p>We love that guy</p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+
             </div>
         )
     }
