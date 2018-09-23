@@ -52,6 +52,22 @@
     background-color: rgb(17, 141, 133)!important;
 }
 
+.keyDiv{
+    width: 50%;
+    margin: 10% auto;
+    border-width: 1.3px;
+    box-shadow: 1px 1px 8px 0.5px #777777;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: white;
+}
+
+@media(max-width:750px){
+    .keyDiv{
+        width:80%;
+    }
+}
+
 @media(max-width:350px){
     .floatingBtn{
         width: 50px;

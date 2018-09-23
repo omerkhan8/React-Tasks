@@ -25,7 +25,33 @@ class Login extends Component {
             alert('please fill the empty fields')
         }
         else {
-            let userData = { userName, email, password };
+            let userData = {
+                userName, email, password,
+                quizTaken: [{
+                    quizTitle: 'Angular',
+                    quizOne: false,
+                    quizTwo: false,
+                    quizThree: false,
+                    quizFour: false
+                },
+                {
+                    quizTitle: 'React',
+                    quizOne: false,
+                    quizTwo: false,
+                    quizThree: false,
+                },
+                {
+                    quizTitle: 'Html',
+                    quizOne: false,
+                    quizTwo: false,
+                },
+                {
+                    quizTitle: 'JavaScript',
+                    quizOne: false,
+                    quizTwo: false,
+                    quizThree: false,
+                }]
+            };
             userData = JSON.stringify(userData);
             localStorage.setItem('userData', userData);
             email = '';
@@ -38,13 +64,20 @@ class Login extends Component {
         const { email, password } = this.state;
         const userData = JSON.parse(localStorage.getItem('userData'));
 
-        if (email === userData.email && password === userData.password) {
-            this.props.loginUser(true);
+        if (userData !== null) {
+            if (email === userData.email && password === userData.password) {
+                this.props.loginUser(true);
+            }
+            else {
+                alert('invalid email / password entered')
+                this.setState({ email: '', password: '' });
+            }
         }
         else {
-            alert('invalid email / password entered')
+            alert('please signup first');
             this.setState({ email: '', password: '' });
         }
+
     }
 
 

@@ -14,7 +14,7 @@ class App extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let userLogin = JSON.parse(localStorage.getItem('userLogin'));
     this.setState({ userLogin });
   }
@@ -27,6 +27,8 @@ class App extends Component {
   logout() {
     this.setState({ userLogin: false });
     localStorage.setItem('userLogin', false);
+    localStorage.setItem('showQuizList',null);
+    localStorage.setItem('startQuiz',false);
   }
 
   render() {

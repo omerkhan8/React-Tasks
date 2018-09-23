@@ -20,6 +20,7 @@ class Quizlist extends Component {
                         description: 'Basic Angular quiz covering 5 chapters of Angular JS up and run book.',
                         passingScore: '65',
                         quizTime: '50 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('Angular question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Angular question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Angular question3', 'one', 'two', 'three', 'four', 'three'),
@@ -35,6 +36,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions chapters 5 to 10 of Angular JS up and run book.',
                         passingScore: '60',
                         quizTime: '40 Minutes',
+                        quizKey: '123',
                         questions: [
                             new Questions('Angular question1', 'one', 'two', 'three', 'four', 'three'),
                             new Questions('Angular question2', 'one', 'two', 'three', 'four', 'three'),
@@ -51,6 +53,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions chapters 10 to 20 of Angular JS up and run book.',
                         passingScore: '65',
                         quizTime: '55 Minutes',
+                        quizKey: '123',
                         questions: [
                             new Questions('Angular question1', 'one', 'two', 'three', 'four', 'three'),
                             new Questions('Angular question2', 'one', 'two', 'three', 'four', 'three'),
@@ -68,6 +71,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions chapters 10 to 15 of Angular JS up and run book.',
                         passingScore: '70',
                         quizTime: '60 Minutes',
+                        quizKey: '123',
                         questioins: [
                             new Questions('Angular question1', 'one', 'two', 'three', 'four', 'three'),
                             new Questions('Angular question2', 'one', 'two', 'three', 'four', 'three'),
@@ -88,6 +92,7 @@ class Quizlist extends Component {
                         description: 'Basic React quiz covering 1st chapters of The road to learn React book.',
                         passingScore: '70',
                         quizTime: '50 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('React question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('React question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('React question3', 'one', 'two', 'three', 'four', 'three'),
@@ -103,6 +108,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions covering 2nd chapters of The road to learn React book.',
                         passingScore: '70',
                         quizTime: '55 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('React question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('React question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('React question3', 'one', 'two', 'three', 'four', 'three'),
@@ -118,6 +124,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions covering 3rd & 4th chapters of The road to learn React book.',
                         passingScore: '70',
                         quizTime: '60 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('React question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('React question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('React question3', 'one', 'two', 'three', 'four', 'three'),
@@ -128,21 +135,6 @@ class Quizlist extends Component {
                         new Questions('React question8', 'one', 'two', 'three', 'four', 'three')
                         ]
 
-                    },
-                    quizFour: {
-                        title: 'React Quiz 4',
-                        description: 'This quiz contains questions covering 5th chapters of The road to learn React book.',
-                        passingScore: '70',
-                        quizTime: '50 Minutes',
-                        questions: [new Questions('React question1', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('React question2', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('React question3', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('React question4', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('React question5', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('React question6', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('React question7', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('React question8', 'one', 'two', 'three', 'four', 'three')
-                        ]
                     }
                 },
                 {
@@ -153,6 +145,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions covering 1st till 4th chapters of Html & CSS book.',
                         passingScore: '60',
                         quizTime: '50 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('Html question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Html question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Html question3', 'one', 'two', 'three', 'four', 'three'),
@@ -168,6 +161,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions covering 5th till 8th chapters of Html & CSS book.',
                         passingScore: '65',
                         quizTime: '60 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('Html question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Html question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Html question3', 'one', 'two', 'three', 'four', 'three'),
@@ -187,6 +181,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions covering first 20 chapters of A smarter way to learn JavaScript book.',
                         passingScore: '65',
                         quizTime: '60 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('Javascript question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Javascript question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Javascript question3', 'one', 'two', 'three', 'four', 'three'),
@@ -202,6 +197,7 @@ class Quizlist extends Component {
                         description: 'This quiz contains questions covering 20 till 40 chapters of A smarter way to learn JavaScript book.',
                         passingScore: '60',
                         quizTime: '55 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('Javascript question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Javascript question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Javascript question3', 'one', 'two', 'three', 'four', 'three'),
@@ -214,10 +210,10 @@ class Quizlist extends Component {
                     },
                     quizThree: {
                         title: 'JavaScript quiz 3',
-                        title: 'JavaScript quiz 2',
                         description: 'This quiz contains questions covering 40 till 60 chapters of A smarter way to learn JavaScript book.',
                         passingScore: '60',
                         quizTime: '55 Minutes',
+                        quizKey: '123',
                         questions: [new Questions('Javascript question1', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Javascript question2', 'one', 'two', 'three', 'four', 'three'),
                         new Questions('Javascript question3', 'one', 'two', 'three', 'four', 'three'),
@@ -228,22 +224,6 @@ class Quizlist extends Component {
                         new Questions('Javascript question8', 'one', 'two', 'three', 'four', 'three')
                         ]
 
-                    },
-                    quizFour: {
-                        title: 'JavaScript Quiz 4',
-                        title: 'JavaScript quiz 2',
-                        description: 'This quiz contains questions covering 60 till 80 chapters of A smarter way to learn JavaScript book.',
-                        passingScore: '70',
-                        quizTime: '65 Minutes',
-                        questions: [new Questions('Javascript question1', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('Javascript question2', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('Javascript question3', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('Javascript question4', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('Javascript question5', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('Javascript question6', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('Javascript question7', 'one', 'two', 'three', 'four', 'three'),
-                        new Questions('Javascript question8', 'one', 'two', 'three', 'four', 'three')
-                        ]
                     }
                 }
             ],
@@ -252,7 +232,7 @@ class Quizlist extends Component {
         this.back = this.back.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let showPage = JSON.parse(localStorage.getItem('showQuizList'));
         this.setState({ show: showPage });
     }
@@ -278,7 +258,7 @@ class Quizlist extends Component {
             <div className='quizDiv' >
                 {quizList.map((items, indx) => {
                     return (
-                        <div className="flip-card" key={items.mainTitle}>
+                        <div className="flip-card" key={indx}>
                             <div className="flip-card-inner">
                                 <div className="flip-card-front">
                                     <img src={items.mainLogo} alt="logo" id='cardLogo' />
