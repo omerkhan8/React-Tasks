@@ -1,14 +1,66 @@
 import React, { Component } from 'react';
 import '../App.css';
+import '../screens/Login/Login.css';
 
 
 class QuizDetails extends Component {
 
-    back() {
-        this.props.back();
+    constructor(props) {
+        super();
+        this.state = {
+            startQuiz: false,
+            enteredKey: null,
+            currentQuizArr: Object.values(props.quizList[props.index]),
+            currQuizTitle: null,
+            currentQuizObj: null
+        }
     }
 
+    componentWillMount() {
+        let startQuiz = JSON.parse(localStorage.getItem('startQuiz'));
+        this.setState({ startQuiz });
+    }
 
+    back() {
+        if (this.state.startQuiz) {
+            this.setState({ startQuiz: false })
+            localStorage.setItem('startQuiz', false);
+        }
+        else {
+            this.props.back();
+        }
+    }
+
+    startQuiz(title) {
+        this.setState({ startQuiz: true });
+        localStorage.setItem('startQuiz', true);
+        this.setState({ currQuizTitle: title });
+    }
+
+    checkKey() {
+        const { currQuizTitle, enteredKey, currentQuizArr } = this.state;
+
+        for (let quiz of currentQuizArr) {
+            if (typeof quiz === 'object') {
+                if (quiz.title === currQuizTitle) {
+                    if (quiz.quizKey === enteredKey) {
+                        alert('correct')
+                        this.setState({ currentQuizObj: quiz })
+                    }
+                    else {
+                        alert('invalid key entered')
+                    }
+                }
+                else if (currQuizTitle === null) {
+                    alert('secession expired, please select your test again.');
+                    this.setState({ startQuiz: false });
+                    break;
+                }
+            }
+        }
+
+
+    }
 
 
     renderFloatingBtn() {
@@ -20,21 +72,25 @@ class QuizDetails extends Component {
     }
 
     renderQuizDetails() {
-        const { quizList, index } = this.props
-        const data = Object.values(quizList[index]);
+        // const { quizList, index } = this.props
+        // const data = Object.values(quizList[index]);
+        const { currentQuizArr } = this.state;
+        console.log(currentQuizArr);
+        const styles = { backgroundColor: '#13A89E', color: 'white' };
         return (
             <div className='quizDetailDiv'>
-                {data.map((items) => {
+                {currentQuizArr.map((items) => {
+                    // console.log(items);
                     return (
                         typeof items === 'object' ?
-                            <div className="card text-center" style={{ width: '18rem' }}>
+                            <div className="card text-center" key={items.title} style={{ width: '18rem' }}>
                                 <div className="card-body">
                                     <h5 className="card-title">{items.title}</h5>
                                     <p><b>Description:</b> {items.description}</p>
                                     <p><b>passing score:</b> {items.passingScore}</p>
                                     <p><b>Quiz duration:</b> {items.quizTime}</p>
                                     {/* <p className="card-text">With supporting text below as a natural lead-in to additional content.</p> */}
-                                    <button type="submit" className="btn btnApp" style={{ backgroundColor: '#13A89E', color: 'white' }} >Start Quiz</button>
+                                    <button type="submit" className="btn btnApp" style={styles} onClick={() => { this.startQuiz(items.title) }} >Start Quiz</button>
                                 </div>
                             </div>
                             :
@@ -45,11 +101,27 @@ class QuizDetails extends Component {
         )
     }
 
+    renderAskKey() {
+        return (
+            <div className='keyDiv'>
+                <div className="form-group">
+                    <input type="email" className="form-control " placeholder="Enter Key" onChange={(e) => { this.setState({ enteredKey: e.target.value }) }} />
+                    <br />
+                    <div className='loginBtn'>
+                        <button type="submit" className="btn" style={{ width: '120px' }} onClick={() => { this.checkKey() }} >Submit</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     render() {
+        const { startQuiz, currentQuizObj } = this.state;
         return (
             <div>
                 {this.renderFloatingBtn()}
-                {this.renderQuizDetails()}
+                {!startQuiz && this.renderQuizDetails()}
+                {startQuiz && !currentQuizObj && this.renderAskKey()}
             </div>
         )
     }
