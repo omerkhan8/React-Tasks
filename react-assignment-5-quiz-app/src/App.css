@@ -62,6 +62,21 @@
     background-color: white;
 }
 
+.quizContainer{
+    margin: 7% 3%;
+}
+.nextBtn button{
+    border-radius: 30px ;
+    margin: 30px auto;
+    background-color: #13A89E ;
+    border-color: #13A89E ;
+    color: white;
+    font-family: cursive;   
+}
+.nextBtn button:hover{
+    background-color: rgb(18, 143, 134);
+}
+
 @media(max-width:750px){
     .keyDiv{
         width:80%;
