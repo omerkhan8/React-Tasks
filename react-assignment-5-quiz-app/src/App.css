@@ -83,10 +83,19 @@
     }
 }
 
-@media(max-width:350px){
+@media(max-width:380px){
     .floatingBtn{
         width: 50px;
         height: 50px;
         line-height: 50px;
+    }
+    .keyDiv h1{
+        font-size: 2.0em;
+    }
+}
+
+@media(max-width:325px){
+    .keyDiv{
+        width: 90%;
     }
 }
