@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import '../screens/Login/Login.css';
-
+import QuizPage from './QuizPage';
 
 class QuizDetails extends Component {
 
@@ -18,7 +18,8 @@ class QuizDetails extends Component {
 
     componentWillMount() {
         let startQuiz = JSON.parse(localStorage.getItem('startQuiz'));
-        this.setState({ startQuiz });
+        let currentQuizObj = JSON.parse(localStorage.getItem('currentQuizObj'));
+        this.setState({ startQuiz, currentQuizObj });
     }
 
     back() {
@@ -45,7 +46,9 @@ class QuizDetails extends Component {
                 if (quiz.title === currQuizTitle) {
                     if (quiz.quizKey === enteredKey) {
                         alert('correct')
-                        this.setState({ currentQuizObj: quiz })
+                        this.setState({ currentQuizObj: quiz });
+                        let saveQuiz = JSON.stringify(quiz);
+                        localStorage.setItem('currentQuizObj', saveQuiz);
                     }
                     else {
                         alert('invalid key entered')
@@ -119,9 +122,10 @@ class QuizDetails extends Component {
         const { startQuiz, currentQuizObj } = this.state;
         return (
             <div>
-                {this.renderFloatingBtn()}
+                {!currentQuizObj && this.renderFloatingBtn()}
                 {!startQuiz && this.renderQuizDetails()}
                 {startQuiz && !currentQuizObj && this.renderAskKey()}
+                {startQuiz && currentQuizObj && <QuizPage Quiz={currentQuizObj} />}
             </div>
         )
     }
