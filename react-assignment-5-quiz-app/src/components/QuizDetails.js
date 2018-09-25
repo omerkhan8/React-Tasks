@@ -14,6 +14,7 @@ class QuizDetails extends Component {
             currQuizTitle: null,
             currentQuizObj: null
         }
+        this.back = this.back.bind(this);
     }
 
     componentWillMount() {
@@ -24,7 +25,8 @@ class QuizDetails extends Component {
 
     back() {
         if (this.state.startQuiz) {
-            this.setState({ startQuiz: false })
+            this.setState({ startQuiz: false, currentQuizObj: null })
+            localStorage.setItem('currentQuizObj', false);
             localStorage.setItem('startQuiz', false);
         }
         else {
@@ -57,6 +59,7 @@ class QuizDetails extends Component {
                 else if (currQuizTitle === null) {
                     alert('secession expired, please select your test again.');
                     this.setState({ startQuiz: false });
+                    localStorage.setItem('startQuiz', false);
                     break;
                 }
             }
@@ -78,7 +81,6 @@ class QuizDetails extends Component {
         // const { quizList, index } = this.props
         // const data = Object.values(quizList[index]);
         const { currentQuizArr } = this.state;
-        console.log(currentQuizArr);
         const styles = { backgroundColor: '#13A89E', color: 'white' };
         return (
             <div className='quizDetailDiv'>
@@ -125,7 +127,7 @@ class QuizDetails extends Component {
                 {!currentQuizObj && this.renderFloatingBtn()}
                 {!startQuiz && this.renderQuizDetails()}
                 {startQuiz && !currentQuizObj && this.renderAskKey()}
-                {startQuiz && currentQuizObj && <QuizPage Quiz={currentQuizObj} />}
+                {startQuiz && currentQuizObj && <QuizPage Quiz={currentQuizObj} goBack={this.back} />}
             </div>
         )
     }

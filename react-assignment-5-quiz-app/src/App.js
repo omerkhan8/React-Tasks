@@ -27,8 +27,12 @@ class App extends Component {
   logout() {
     this.setState({ userLogin: false });
     localStorage.setItem('userLogin', false);
-    localStorage.setItem('showQuizList',null);
-    localStorage.setItem('startQuiz',false);
+    localStorage.setItem('showQuizList', null);
+    localStorage.setItem('startQuiz', false);
+    localStorage.setItem('currentQuizObj', null);
+    localStorage.setItem('result', 0);
+    localStorage.setItem('index', 0);
+    localStorage.setItem('finalScore', null);
   }
 
   render() {
