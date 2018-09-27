@@ -42,15 +42,21 @@ class QuizDetails extends Component {
 
     checkKey() {
         const { currQuizTitle, enteredKey, currentQuizArr } = this.state;
+        let quizTaken = JSON.parse(localStorage.getItem('quizTaken'));
 
         for (let quiz of currentQuizArr) {
             if (typeof quiz === 'object') {
                 if (quiz.title === currQuizTitle) {
                     if (quiz.quizKey === enteredKey) {
                         alert('correct')
-                        this.setState({ currentQuizObj: quiz });
+                        quiz.done = true;
                         let saveQuiz = JSON.stringify(quiz);
                         localStorage.setItem('currentQuizObj', saveQuiz);
+                        this.setState({ currentQuizObj: quiz });
+                        quizTaken.push(quiz);
+                        quizTaken = JSON.stringify(quizTaken);
+                        localStorage.setItem('quizTaken', quizTaken);
+                        break;
                     }
                     else {
                         alert('invalid key entered')
@@ -78,10 +84,19 @@ class QuizDetails extends Component {
     }
 
     renderQuizDetails() {
-        // const { quizList, index } = this.props
-        // const data = Object.values(quizList[index]);
         const { currentQuizArr } = this.state;
         const styles = { backgroundColor: '#13A89E', color: 'white' };
+        const quizTaken = JSON.parse(localStorage.getItem('quizTaken'));
+        for (let arr of currentQuizArr) {
+            if (typeof arr === 'object') {
+                quizTaken.map(items => {
+                    if (arr.title === items.title) {
+                        arr.done = true;
+                        arr.result = items.finalScore;
+                    }
+                })
+            }
+        }
         return (
             <div className='quizDetailDiv'>
                 {currentQuizArr.map((items) => {
@@ -93,9 +108,20 @@ class QuizDetails extends Component {
                                     <h5 className="card-title">{items.title}</h5>
                                     <p><b>Description:</b> {items.description}</p>
                                     <p><b>passing score:</b> {items.passingScore}</p>
-                                    <p><b>Quiz duration:</b> {items.quizTime}</p>
-                                    {/* <p className="card-text">With supporting text below as a natural lead-in to additional content.</p> */}
-                                    <button type="submit" className="btn btnApp" style={styles} onClick={() => { this.startQuiz(items.title) }} >Start Quiz</button>
+                                    {!items.done ?
+                                        < span >
+                                            <p><b>Quiz duration:</b> {items.quizTime}</p>
+                                            <button type="submit" className="btn btnApp" style={styles} onClick={() => { this.startQuiz(items.title) }} >Start Quiz</button>
+                                        </span>
+                                        :
+                                        <span>
+                                            {items.result > items.passingScore ?
+                                                <h4><b>Your Score:</b> <span style={{ color: 'green' }}>{items.result}</span>/100</h4>
+                                                :
+                                                <h4><b>Your Score:</b> <span style={{ color: 'red' }}>{items.result}</span>/100</h4>
+                                            }
+                                        </span>
+                                    }
                                 </div>
                             </div>
                             :
