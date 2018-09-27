@@ -11,7 +11,7 @@ class QuizPage extends Component {
             finalScore: null,
             timer: null
         }
-        this.quizTime = parseInt(props.Quiz.quizTime.substr(0, 2), 10);
+        this.quizTime = parseInt(props.Quiz.quizTime.substr(0, 1), 10);
         this.passingScore = parseInt(props.Quiz.passingScore, 10);
         this.result = 0;
     }
@@ -47,6 +47,7 @@ class QuizPage extends Component {
                 let correct = this.result;
                 let total = questions.length;
                 let finalScore = (correct / total) * 100;
+                finalScore = parseInt(finalScore);
                 index = 0;
                 this.result = 0
                 localStorage.setItem('index', 0);
@@ -95,6 +96,7 @@ class QuizPage extends Component {
                 let correct = this.result;
                 let total = questions.length;
                 let finalScore = (correct / total) * 100;
+                finalScore = parseInt(finalScore);
                 index = 0;
                 this.result = 0
                 if (finalScore === 0) {

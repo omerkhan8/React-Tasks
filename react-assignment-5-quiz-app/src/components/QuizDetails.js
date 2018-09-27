@@ -115,7 +115,7 @@ class QuizDetails extends Component {
                                         </span>
                                         :
                                         <span>
-                                            {items.result > items.passingScore ?
+                                            {items.result >= items.passingScore ?
                                                 <h4><b>Your Score:</b> <span style={{ color: 'green' }}>{items.result}</span>/100</h4>
                                                 :
                                                 <h4><b>Your Score:</b> <span style={{ color: 'red' }}>{items.result}</span>/100</h4>
@@ -136,7 +136,7 @@ class QuizDetails extends Component {
         return (
             <div className='keyDiv'>
                 <div className="form-group">
-                    <input type="email" className="form-control " placeholder="Enter Key" onChange={(e) => { this.setState({ enteredKey: e.target.value }) }} />
+                    <input type="password" className="form-control " placeholder="Enter Key" onChange={(e) => { this.setState({ enteredKey: e.target.value }) }} />
                     <br />
                     <div className='loginBtn'>
                         <button type="submit" className="btn" style={{ width: '120px' }} onClick={() => { this.checkKey() }} >Submit</button>
