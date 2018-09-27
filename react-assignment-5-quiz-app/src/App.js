@@ -17,6 +17,13 @@ class App extends Component {
   componentDidMount() {
     let userLogin = JSON.parse(localStorage.getItem('userLogin'));
     this.setState({ userLogin });
+    const check = localStorage.getItem('quizTaken');
+    if (check === null) {
+      console.log('created new');
+      let arr = []
+      arr = JSON.stringify(arr);
+      localStorage.setItem('quizTaken', arr);
+    }
   }
 
   loginUser(userLogin) {
@@ -33,6 +40,7 @@ class App extends Component {
     localStorage.setItem('result', 0);
     localStorage.setItem('index', 0);
     localStorage.setItem('finalScore', null);
+    localStorage.setItem('quizTime', null);
   }
 
   render() {

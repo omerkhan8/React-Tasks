@@ -25,33 +25,7 @@ class Login extends Component {
             alert('please fill the empty fields')
         }
         else {
-            let userData = {
-                userName, email, password,
-                quizTaken: [{
-                    quizTitle: 'Angular',
-                    quizOne: false,
-                    quizTwo: false,
-                    quizThree: false,
-                    quizFour: false
-                },
-                {
-                    quizTitle: 'React',
-                    quizOne: false,
-                    quizTwo: false,
-                    quizThree: false,
-                },
-                {
-                    quizTitle: 'Html',
-                    quizOne: false,
-                    quizTwo: false,
-                },
-                {
-                    quizTitle: 'JavaScript',
-                    quizOne: false,
-                    quizTwo: false,
-                    quizThree: false,
-                }]
-            };
+            let userData = { userName, email, password, };
             userData = JSON.stringify(userData);
             localStorage.setItem('userData', userData);
             email = '';
