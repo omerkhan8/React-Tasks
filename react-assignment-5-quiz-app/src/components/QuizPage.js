@@ -8,7 +8,8 @@ class QuizPage extends Component {
         this.state = {
             Quiz: props.Quiz,
             index: 0,
-            finalScore: null
+            finalScore: null,
+            timer: null
         }
         this.quizTime = parseInt(props.Quiz.quizTime.substr(0, 2), 10);
         this.passingScore = parseInt(props.Quiz.passingScore, 10);
@@ -25,12 +26,14 @@ class QuizPage extends Component {
         }
         this.setState({ index, finalScore });
         this.result = result;
+        this.timer();
     }
 
     next() {
         let { index, Quiz } = this.state;
         let { questions } = Quiz;
         let answer = document.querySelector("input[name='option']:checked");
+        let quizTaken = JSON.parse(localStorage.getItem('quizTaken'));
         if (answer === null) {
             alert('please select an option');
         }
@@ -50,6 +53,13 @@ class QuizPage extends Component {
                 localStorage.setItem('result', 0);
                 localStorage.setItem('finalScore', finalScore);
                 this.setState({ finalScore, index })
+                for (let quiz of quizTaken) {
+                    if (quiz.title === Quiz.title) {
+                        quiz.finalScore = finalScore;
+                    }
+                }
+                quizTaken = JSON.stringify(quizTaken);
+                localStorage.setItem('quizTaken', quizTaken);
                 return
             }
             index++;
@@ -66,13 +76,67 @@ class QuizPage extends Component {
         this.props.goBack();
     }
 
+    timer() {
+        let mins = this.quizTime - 1;
+        let seconds = 59;
+        let { Quiz, index } = this.state;
+        const { questions } = Quiz;
+        let quizTimer = setInterval(() => {
+            seconds--;
+            if (seconds === 0) {
+                mins--;
+                seconds = 60;
+            }
+            if (mins < 0) {
+                mins = 0;
+                seconds = 0;
+                clearInterval(quizTimer);
+                alert('time out');
+                let correct = this.result;
+                let total = questions.length;
+                let finalScore = (correct / total) * 100;
+                index = 0;
+                this.result = 0
+                if (finalScore === 0) {
+                    finalScore = 0.1;
+                }
+                localStorage.setItem('index', 0);
+                localStorage.setItem('result', 0);
+                localStorage.setItem('finalScore', finalScore);
+                this.setState({ finalScore, index })
+
+            }
+            this.setState({ timer: digits(mins, seconds) })
+
+            if (this.state.finalScore !== null) {
+                clearInterval(quizTimer);
+            }
+        }, 1000)
+
+
+        function digits(num1, num2) {
+            if (num1 > 9 && num2 > 9) {
+                return num1 + ":" + num2;
+            }
+            else if (num1 < 10 && num2 > 9) {
+                return "0" + num1 + ":" + num2;
+            }
+            else if (num1 > 9 && num2 < 10) {
+                return num1 + ":" + "0" + num2;
+            }
+            else if (num1 < 10 && num2 < 10) {
+                return "0" + num1 + ":" + "0" + num2;
+            }
+        }
+    }
+
     renderQuestions() {
-        const { Quiz, index } = this.state;
+        const { Quiz, index, timer } = this.state;
         const { questions } = Quiz;
         let quizArray = questions[index];
         return (
             <div className="quizContainer">
-                {/* <h5>Question: {index + 1}/{questions.length}</h5> */}
+                <h4>{timer}</h4>
                 <h3><b>Q#{index + 1}/{questions.length} :</b>{quizArray.question}</h3>
                 <div className="custom-control custom-radio radioDiv">
                     <input type="radio" id="customRadio1" name="option" value={quizArray.option1} className="custom-control-input" />
@@ -99,7 +163,7 @@ class QuizPage extends Component {
     }
 
     renderResult() {
-        const { Quiz, finalScore } = this.state; 
+        const { Quiz, finalScore } = this.state;
         return (
             <div className='keyDiv'>
                 {finalScore >= this.passingScore ?
