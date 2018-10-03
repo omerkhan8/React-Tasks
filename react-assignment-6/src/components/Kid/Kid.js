@@ -5,23 +5,26 @@ export default class Kid extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { emotion: 'nervous', danceSteps: [], currentStepIndex: 0, startedPerforming: false };
+        this.state = {
+            emotion: 'nervous',
+            danceSteps: [],
+            currentStepIndex: 0,
+            startedPerforming: false,
+            stop: false
+        };
     }
 
     qualified() {
-        this.setState({ startedPerforming: false })
+        this.setState({ startedPerforming: false, stop: true })
     }
 
     static getDerivedStateFromProps(props, state) {
-        // const oldSteps = state.danceSteps;
-        // const newSteps = props.furtherSteps;
-        // const allSteps = oldSteps.concat(newSteps);
-        // return { danceSteps: allSteps };
         const danceSteps = [...state.danceSteps, ...props.furtherSteps];
         return {
             danceSteps: state.danceSteps.length < 5 ? danceSteps : state.danceSteps,
-            startedPerforming: danceSteps.length >= 5,
-            emotion: props.updateEmotion || 'nervous'
+            startedPerforming: !state.stop && danceSteps.length >= 5,
+            emotion: props.updateEmotion || 'nervous',
+            stars: props.stars
         }
     }
 
@@ -29,6 +32,17 @@ export default class Kid extends React.Component {
         let { danceSteps } = this.state;
         danceSteps = ['step1', 'step2'];
         this.setState({ danceSteps });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { stars } = this.state;
+        if (prevState.stars === 4 && stars === 5) {
+            this.qualified();
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.leaveJudge(true);
     }
 
     render() {

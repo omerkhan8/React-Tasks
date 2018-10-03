@@ -22,10 +22,10 @@ export default class Judge extends React.Component {
 
     }
 
-    provideStars() {
+    async provideStars() {
         let { stars } = this.state;
-
-        this.setState({ stars: ++stars })
+        await this.setState({ stars: ++stars })
+        this.props.getStars(stars)
     }
 
     render() {
