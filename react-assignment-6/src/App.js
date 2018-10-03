@@ -9,10 +9,14 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      volume: 0
+      volume: 0,
+      leaveKid: false,
+      leaveJudge: false
     }
     this.updateSteps = this.updateSteps.bind(this);
     this.updateEmotion = this.updateEmotion.bind(this);
+    this.getStars = this.getStars.bind(this);
+    this.leaveJudge = this.leaveJudge.bind(this);
   }
 
   static getDerivedStateFromProps() {
@@ -27,14 +31,26 @@ class App extends Component {
     this.setState({ emotion });
   }
 
+  getStars(stars) {
+    this.setState({ stars });
+  }
+
+  leaveJudge(leaveJudge) {
+    this.setState({ leaveJudge });
+  }
+
   render() {
-    const { furtherSteps } = this.state;
+    const { furtherSteps, leaveKid, leaveJudge } = this.state;
 
 
     return (
       <div>
         <h1>Kid</h1>
-        <Kid dressColor={'cyan'} furtherSteps={furtherSteps} updateEmotion={this.state.emotion} />
+        {
+          !leaveKid &&
+          <Kid dressColor={'cyan'} furtherSteps={furtherSteps}
+            updateEmotion={this.state.emotion} stars={this.state.stars} leaveJudge={this.leaveJudge} />
+        }
         <br />
         <br />
         <br />
@@ -45,7 +61,13 @@ class App extends Component {
         <br />
 
         <h1>Judge</h1>
-        <Judge updateEmotion={this.updateEmotion} />
+        {
+          !leaveJudge &&
+          <Judge updateEmotion={this.updateEmotion} getStars={this.getStars} />
+        }
+        <br />
+        <br />
+        <button onClick={() => { this.setState({ leaveKid: true }) }}>Ask Kid to Leave</button>
       </div>
     );
   }
