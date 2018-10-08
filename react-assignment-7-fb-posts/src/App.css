@@ -1,5 +1,29 @@
+body{
+    background-color: #E9EBEE !important;
+}
+
 .postContainer{
-    border-style: solid;
+    /* border-style: solid; */
     width: 600px;
-    margin: 0 auto;
+    margin: 8px auto;
+    overflow: hidden;
+}
+
+.Nav{
+    /* height: 40px; */
+    margin: 0;
+    background-color: #4267B2;
+    line-height: 40px;
+    font-size: 1.6em;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+@media(max-width:605px){
+    .postContainer{
+        /* width: 310px; */
+        width: 95%;
+        margin: 8px auto;
+    }
 }
