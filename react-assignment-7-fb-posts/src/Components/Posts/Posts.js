@@ -10,7 +10,8 @@ class Posts extends React.Component {
         this.state = {
             like: false,
             emoji: false,
-            smallEmoji: false
+            smallEmoji: false,
+            currIndex: null
         }
     }
 
@@ -28,9 +29,9 @@ class Posts extends React.Component {
 
     }
 
-    showEmoji() {
-        const { emoji } = this.state;
-        setTimeout(() => { this.setState({ emoji: true }) }, 300)
+    showEmoji(index) {
+        const { emoji, currIndex } = this.state;
+        setTimeout(() => { this.setState({ currIndex: index, emoji: true }) }, 300)
     }
     hideEmoji() {
         const { emoji } = this.state;
@@ -44,8 +45,8 @@ class Posts extends React.Component {
     }
 
     render() {
-        const { data } = this.props;
-        const { like, emoji, smallEmoji } = this.state;
+        const { postData } = this.props;
+        const { like, emoji, smallEmoji, currIndex } = this.state;
         const styleIcon = {
             fontSize: "28px",
             color: '#737880',
@@ -54,87 +55,93 @@ class Posts extends React.Component {
         }
         // console.log(this.state);
         return (
-            <div className="main-post-div">
-                <div style={{ padding: '10px', height: '80px' }}>
-                    <div className="userdata-div">
-                        <div className="avatar-div">
-                            <img src={data.avatar} alt="display" />
+            postData.map((data, index) => {
+                return (
+                    <div className="main-post-div">
+                        <div style={{ padding: '10px', height: '70px' }}>
+                            <div className="userdata-div">
+                                <div className="avatar-div">
+                                    <img src={data.avatar} alt="display" />
+                                </div>
+                                <div className="username-div">
+                                    <h2>{data.createdBy}</h2>
+                                    <p>{moment().calendar()} . Edited</p>
+                                </div>
+                            </div>
+                            <i className="fa fa-ellipsis-h" style={styleIcon}></i>
                         </div>
-                        <div className="username-div">
-                            <h2>{data.createdBy}</h2>
-                            <p>{moment().calendar()} . Edited</p>
+                        <div className="description-div">
+                            <p>{data.description}</p>
                         </div>
-                    </div>
-                    <i className="fa fa-ellipsis-h" style={styleIcon}></i>
-                </div>
-                <div className="description-div">
-                    <p>{data.description}</p>
-                </div>
-                <div>
-                    <FbImageLibrary images={data.images} hideOverlay={true} />
-                </div>
-                <div>
-                    <div className="emoji-div">
-                        <FacebookEmoji type="like" size="xxs" />
-                        <FacebookEmoji type="love" size="xxs" />
-                        {/* <FacebookEmoji type="wow" size="xxs" />
-                        <FacebookEmoji type="angry" size="xxs" />
-                        <FacebookEmoji type="haha" size="xxs" />
-                        <FacebookEmoji type="sad" size="xxs" /> */}
-                        <p>{like ? `You, ${data.likes}` : data.likes}</p>
-                        <p id="comment-p">1 Comment</p>
-                    </div>
-                    <div className="line-div">
-                    </div>
-                    <div style={{ marginTop: "5px" }}>
-                        <div className="like-comment">
-                            <span className="like-comment-btn" onMouseOver={() => this.showEmoji()} onClick={() => this.like()} onMouseOut={() => this.hideEmoji()}>
-                                {like ?
-                                    <span style={{ color: '#4267B2' }}>
-                                        <i className="fa fa-thumbs-o-up" ></i> Like
+                        <div>
+                            {data.images.length > 0 ? <FbImageLibrary images={data.images} hideOverlay={true} />
+                                : null}
+                        </div>
+                        <div>
+                            <div className="emoji-div">
+                                <FacebookEmoji type="like" size="xxs" />
+                                {data.love && <FacebookEmoji type="love" size="xxs" />}
+                                {data.wow && <FacebookEmoji type="wow" size="xxs" />}
+                                {data.angry && <FacebookEmoji type="angry" size="xxs" />}
+                                {data.haha && <FacebookEmoji type="haha" size="xxs" />}
+                                {data.sad && <FacebookEmoji type="sad" size="xxs" />}
+                                <p>{like && index === currIndex ? `You, ${data.likes}` : data.likes}</p>
+                                <p id="comment-p">{data.comments} Comment</p>
+                            </div>
+                            <div className="line-div">
+                            </div>
+                            <div style={{ marginTop: "5px" }}>
+                                <div className="like-comment">
+                                    <span className="like-comment-btn" onMouseOver={() => this.showEmoji(index)} onClick={() => this.like()} onMouseOut={() => this.hideEmoji()}>
+                                        {like && index === currIndex ?
+                                            <span style={{ color: '#4267B2' }}>
+                                                <i className="fa fa-thumbs-o-up" ></i> Like
                                     </span> :
-                                    <span>
-                                        <i className="fa fa-thumbs-o-up"></i> Like
+                                            <span>
+                                                <i className="fa fa-thumbs-o-up"></i> Like
                                     </span>
-                                }
+                                        }
 
+                                    </span>
+                                </div>
+                                <div className="like-comment">
+                                    <span className="like-comment-btn">
+                                        <i className="fa fa-comment-o"></i> Comment
                             </span>
-                        </div>
-                        <div className="like-comment">
-                            <span className="like-comment-btn">
-                                <i className="fa fa-comment-o"></i> Comment
+                                </div>
+                                <div className="like-comment share-div">
+                                    <span className='like-comment-btn'>
+                                        <i className="fa fa-share"></i> Share
                             </span>
-                        </div>
-                        <div className="like-comment share-div">
-                            <span className='like-comment-btn'>
-                                <i className="fa fa-share"></i> Share
-                            </span>
+                                </div>
+                            </div>
+                            {
+                                emoji && !smallEmoji && index === currIndex &&
+                                <div className="emoji-hover-div" >
+                                    <FacebookEmoji type="like" />
+                                    <FacebookEmoji type="love" />
+                                    <FacebookEmoji type="wow" />
+                                    <FacebookEmoji type="angry" />
+                                    <FacebookEmoji type="haha" />
+                                    <FacebookEmoji type="sad" />
+                                </div>
+                            }
+                            {
+                                emoji && smallEmoji && index === currIndex &&
+                                <div className="emoji-hover-div" >
+                                    <FacebookEmoji type="like" size="sm" />
+                                    <FacebookEmoji type="love" size="sm" />
+                                    <FacebookEmoji type="wow" size="sm" />
+                                    <FacebookEmoji type="angry" size="sm" />
+                                    <FacebookEmoji type="haha" size="sm" />
+                                    <FacebookEmoji type="sad" size="sm" />
+                                </div>
+                            }
                         </div>
                     </div>
-                    {
-                        emoji && !smallEmoji &&
-                        <div className="emoji-hover-div" >
-                            <FacebookEmoji type="like" />
-                            <FacebookEmoji type="love" />
-                            <FacebookEmoji type="wow" />
-                            <FacebookEmoji type="angry" />
-                            <FacebookEmoji type="haha" />
-                            <FacebookEmoji type="sad" />
-                        </div>
-                    }
-                    {
-                        emoji && smallEmoji &&
-                        <div className="emoji-hover-div" >
-                            <FacebookEmoji type="like" size="sm" />
-                            <FacebookEmoji type="love" size="sm" />
-                            <FacebookEmoji type="wow" size="sm" />
-                            <FacebookEmoji type="angry" size="sm" />
-                            <FacebookEmoji type="haha" size="sm" />
-                            <FacebookEmoji type="sad" size="sm" />
-                        </div>
-                    }
-                </div>
-            </div>
+                )
+            })
+
         )
     }
 }

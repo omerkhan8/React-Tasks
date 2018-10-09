@@ -5,7 +5,7 @@ body{
 .postContainer{
     /* border-style: solid; */
     width: 600px;
-    margin: 8px auto;
+    margin: 0 auto;
     overflow: hidden;
 }
 
