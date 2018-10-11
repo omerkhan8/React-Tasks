@@ -27,6 +27,10 @@ class Posts extends React.Component {
             }
         });
 
+        if (window.screen.width <= 500) {
+            this.setState({ smallEmoji: true });
+        }
+
     }
 
     showEmoji(index) {
@@ -57,7 +61,7 @@ class Posts extends React.Component {
         return (
             postData.map((data, index) => {
                 return (
-                    <div className="main-post-div">
+                    <div className="main-post-div" key={data.createdBy + index}>
                         <div style={{ padding: '10px', height: '70px' }}>
                             <div className="userdata-div">
                                 <div className="avatar-div">
