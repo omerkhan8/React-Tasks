@@ -20,9 +20,24 @@ class App extends Component {
         comments: 1,
         love: true,
         wow: false,
-        angry:true,
-        haha:false,
-        sad:false
+        angry: true,
+        haha: false,
+        sad: false
+      },
+      {
+        createdBy: 'Shoaib Khan',
+        avatar: 'https://scontent.fkhi6-1.fna.fbcdn.net/v/t1.0-9/28685793_1879144032097137_4627626026866647494_n.jpg?_nc_cat=110&oh=efc0277851eb3b82084ce46620289b3b&oe=5C1601FB',
+        description: 'lit',
+        images: ['https://scontent.fkhi6-1.fna.fbcdn.net/v/t1.0-9/19059434_366211810499992_5082170103564905646_n.png?_nc_cat=109&oh=0135b2a62f4f53e517054ffc4dcdcdb7&oe=5C5DDBC4'
+        ],
+        createdAt: Date.now(),
+        likes: 'Omer Khan and 14 others',
+        comments: 1,
+        love: false,
+        wow: true,
+        angry: false,
+        haha: true,
+        sad: true
       },
       {
         createdBy: 'Hafiz Tanveer',
@@ -35,12 +50,12 @@ class App extends Component {
         images: [],
         createdAt: Date.now(),
         likes: 'Zain Ahmed  and 42 others',
-        comments:6,
+        comments: 6,
         love: true,
         wow: false,
-        angry:false,
-        haha:false,
-        sad:true
+        angry: false,
+        haha: false,
+        sad: true
       },
       {
         createdBy: 'Owais Khan',
@@ -52,9 +67,9 @@ class App extends Component {
         comments: 8,
         love: false,
         wow: true,
-        angry:false,
-        haha:true,
-        sad:false
+        angry: false,
+        haha: true,
+        sad: false
       }
       ]
     }
